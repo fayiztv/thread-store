@@ -64,3 +64,24 @@ export async function uploadBannerToCloudinary(file, onProgress) {
     xhr.send(formData);
   });
 }
+
+export function getOptimizedImageUrl(url, options = {}) {
+  if (!url || typeof url !== 'string' || !url.includes('res.cloudinary.com')) {
+    return url;
+  }
+
+  const {
+    width,
+    height,
+    crop = 'limit', // 'limit' = resize down only, keeps aspect ratio, no forced crop
+    quality = 'auto',
+    format = 'auto',
+  } = options;
+
+  let transform = `f_${format},q_${quality}`;
+  if (width) transform += `,w_${width}`;
+  if (height) transform += `,h_${height}`;
+  if (width || height) transform += `,c_${crop}`;
+
+  return url.replace('/image/upload/', `/image/upload/${transform}/`);
+}

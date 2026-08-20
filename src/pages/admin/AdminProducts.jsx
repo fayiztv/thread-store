@@ -19,6 +19,7 @@ import GlassCard from "../../components/common/GlassCard";
 import { PER_PAGE } from "../../utils/constents";
 import { getPageNumbers, getProductCategories } from "../../utils/helpers";
 import { SectionHeading } from "../../components/common/sectionHeading";
+import { getOptimizedImageUrl } from "../../utils/cloudinary";
 
 const listVariants = {
   hidden: {},
@@ -194,7 +195,9 @@ export default function AdminProducts() {
                 <div className="flex items-start gap-3">
                   {product.images?.[0] ? (
                     <img
-                      src={product.images[0]}
+                      src={getOptimizedImageUrl(product.images[0], {
+                        width: 100,
+                      })}
                       alt={product.name}
                       className="h-14 w-14 shrink-0 rounded-xl object-cover"
                     />

@@ -1,5 +1,6 @@
 // Logo reads store name and logo from settings dynamically
 import { useStoreSettings } from "../../contexts/SettingsContext";
+import { getOptimizedImageUrl } from "../../utils/cloudinary";
 
 export function Logo({ onClick, light = true }) {
   const { settings } = useStoreSettings();
@@ -15,7 +16,7 @@ export function Logo({ onClick, light = true }) {
     >
       {logoUrl ? (
         <img
-          src={logoUrl}
+          src={getOptimizedImageUrl(logoUrl, { width: 80 })}
           alt={storeName}
           className="h-8 w-8 rounded-lg object-cover"
         />

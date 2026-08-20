@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { cardVariants } from "../../utils/constents";
 import { useFavourites } from "../../hooks/useFavorites";
 import { getProductCategories } from "../../utils/helpers";
+import { getOptimizedImageUrl } from "../../utils/cloudinary";
 
 function getVariantPriceRange(variants) {
   if (!variants || variants.length === 0) return null;
@@ -119,7 +120,7 @@ export default function ProductCard({ product, layout = "vertical" }) {
         <div className="relative h-32 w-28 shrink-0 overflow-hidden rounded-l-2xl">
           {product.images?.[0] ? (
             <img
-              src={product.images[0]}
+              src={getOptimizedImageUrl(product.images[0], { width: 200 })}
               alt={product.name}
               className="h-full w-full object-cover"
             />
@@ -202,7 +203,7 @@ export default function ProductCard({ product, layout = "vertical" }) {
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         {product.images?.[0] ? (
           <img
-            src={product.images[0]}
+            src={getOptimizedImageUrl(product.images[0], { width: 500 })}
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
           />

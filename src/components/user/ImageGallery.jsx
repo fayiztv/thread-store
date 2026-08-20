@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Shirt } from "lucide-react";
+import { getOptimizedImageUrl } from "../../utils/cloudinary";
 
 export default function ImageGallery({ images = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +21,9 @@ export default function ImageGallery({ images = [] }) {
         <AnimatePresence mode="wait">
           <motion.img
             key={currentIndex}
-            src={galleryImages[currentIndex]}
+            src={getOptimizedImageUrl(galleryImages[currentIndex], {
+              width: 800,
+            })}
             alt={`Product view ${currentIndex + 1}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -45,7 +48,7 @@ export default function ImageGallery({ images = [] }) {
               }`}
             >
               <img
-                src={src}
+                src={getOptimizedImageUrl(src, { width: 150 })}
                 alt={`Thumbnail ${index + 1}`}
                 className="h-full w-full object-cover"
               />

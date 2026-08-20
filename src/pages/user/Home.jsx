@@ -13,7 +13,7 @@ import {
   containerVariantsHome,
 } from "../../utils/constents";
 import { SectionHeading } from "../../components/common/sectionHeading";
-
+import { getOptimizedImageUrl } from "../../utils/cloudinary";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -91,7 +91,9 @@ export default function Home() {
                   className="absolute inset-0"
                 >
                   <img
-                    src={banners[currentSlide].imageUrl}
+                    src={getOptimizedImageUrl(banners[currentSlide].imageUrl, {
+                      width: 1600,
+                    })}
                     alt={banners[currentSlide].title || "Banner"}
                     className="h-full w-full object-cover"
                   />

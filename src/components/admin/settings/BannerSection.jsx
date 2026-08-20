@@ -2,6 +2,7 @@ import { ImagePlus, Pencil, Store, Trash2, X } from "lucide-react";
 import Section from "./Section";
 import { inputClass } from "./settingsStyles";
 import { motion } from "framer-motion";
+import { getOptimizedImageUrl } from "../../../utils/cloudinary";
 
 export default function BannerSection({
   banners,
@@ -46,7 +47,7 @@ export default function BannerSection({
               }`}
             >
               <img
-                src={banner.imageUrl}
+                src={getOptimizedImageUrl(banner.imageUrl, { width: 200 })}
                 alt={banner.title}
                 className="h-16 w-24 rounded-lg object-cover"
               />
@@ -201,8 +202,12 @@ export default function BannerSection({
             className="flex-1 rounded-xl bg-[var(--primary-dark)] py-3 font-semibold text-white disabled:opacity-70"
           >
             {bannerSaving
-              ? isEditing ? "Updating..." : "Uploading..."
-              : isEditing ? "Update Banner" : "Add Banner"}
+              ? isEditing
+                ? "Updating..."
+                : "Uploading..."
+              : isEditing
+                ? "Update Banner"
+                : "Add Banner"}
           </motion.button>
         </div>
       </form>

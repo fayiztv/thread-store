@@ -65,31 +65,24 @@ export function SettingsProvider({ children }) {
   }, [settings?.metaDescription]);
 
   useEffect(() => {
-    if (!settings?.logoUrl) return;
-
     let favicon = document.querySelector("link[rel='icon']");
-
     if (!favicon) {
       favicon = document.createElement("link");
       favicon.rel = "icon";
       document.head.appendChild(favicon);
     }
-
-    favicon.href = settings.logoUrl;
+    // If logo removed, fall back to static favicon
+    favicon.href = settings?.logoUrl || "/favicon.jpeg";
   }, [settings?.logoUrl]);
 
   useEffect(() => {
-    if (!settings?.logoUrl) return;
-
     let ogImage = document.querySelector("meta[property='og:image']");
-
     if (!ogImage) {
       ogImage = document.createElement("meta");
       ogImage.setAttribute("property", "og:image");
       document.head.appendChild(ogImage);
     }
-
-    ogImage.setAttribute("content", settings.logoUrl);
+    ogImage.setAttribute("content", settings?.logoUrl || "/favicon.jpeg");
   }, [settings?.logoUrl]);
 
   return (

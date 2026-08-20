@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { db } from "../../firebase/firebase";
-import { uploadImageToCloudinary } from "../../utils/cloudinary";
+import { getOptimizedImageUrl, uploadImageToCloudinary } from "../../utils/cloudinary";
 import useCategories from "../../hooks/useCategories";
 import { AdminProductFormToggle } from "../../components/admin/AdminProductFormToggle";
 import { SectionHeading } from "../../components/common/sectionHeading";
@@ -814,7 +814,9 @@ export default function AdminProductForm() {
             {images.map((img, index) => (
               <div key={`${img.preview}-${index}`} className="relative">
                 <img
-                  src={img.preview || img.url}
+                  src={
+                    img.preview || getOptimizedImageUrl(img.url, { width: 200 })
+                  }
                   alt={`Preview ${index + 1}`}
                   className="aspect-square w-full rounded-xl object-cover"
                 />

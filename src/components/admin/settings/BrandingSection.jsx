@@ -2,7 +2,7 @@ import { FolderPen, Globe, ImagePlus, MapPin, Palette, X } from "lucide-react";
 import Section from "./Section";
 import Subsection from "./Subsection";
 import { inputClass, labelClass } from "./settingsStyles";
-import { uploadImageToCloudinary } from "../../../utils/cloudinary";
+import { getOptimizedImageUrl, uploadImageToCloudinary } from "../../../utils/cloudinary";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
 import toast from "react-hot-toast";
@@ -116,7 +116,7 @@ export default function BrandingSection({
               <div className="h-16 w-16 rounded-xl overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                 {logoPreview || logoUrl ? (
                   <img
-                    src={logoPreview || logoUrl}
+                    src={logoPreview || getOptimizedImageUrl(logoUrl, { width: 128 })}
                     alt="Logo"
                     className="h-full w-full object-cover"
                   />
