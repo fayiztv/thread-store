@@ -49,6 +49,7 @@ export default function ImageGallery({ images = [] }) {
             >
               <img
                 src={getOptimizedImageUrl(src, { width: 150 })}
+                loading="lazy"
                 alt={`Thumbnail ${index + 1}`}
                 className="h-full w-full object-cover"
               />

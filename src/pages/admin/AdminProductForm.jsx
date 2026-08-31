@@ -817,6 +817,7 @@ export default function AdminProductForm() {
                   src={
                     img.preview || getOptimizedImageUrl(img.url, { width: 200 })
                   }
+                  loading="lazy"
                   alt={`Preview ${index + 1}`}
                   className="aspect-square w-full rounded-xl object-cover"
                 />

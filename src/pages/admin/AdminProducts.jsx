@@ -198,6 +198,7 @@ export default function AdminProducts() {
                       src={getOptimizedImageUrl(product.images[0], {
                         width: 100,
                       })}
+                      loading="lazy"
                       alt={product.name}
                       className="h-14 w-14 shrink-0 rounded-xl object-cover"
                     />

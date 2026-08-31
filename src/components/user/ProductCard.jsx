@@ -122,6 +122,7 @@ export default function ProductCard({ product, layout = "vertical" }) {
             <img
               src={getOptimizedImageUrl(product.images[0], { width: 200 })}
               alt={product.name}
+              loading="lazy"
               className="h-full w-full object-cover"
             />
           ) : (
@@ -204,6 +205,7 @@ export default function ProductCard({ product, layout = "vertical" }) {
         {product.images?.[0] ? (
           <img
             src={getOptimizedImageUrl(product.images[0], { width: 500 })}
+            loading="lazy"
             alt={product.name}
             className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
           />

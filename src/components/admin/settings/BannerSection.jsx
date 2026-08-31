@@ -48,6 +48,7 @@ export default function BannerSection({
             >
               <img
                 src={getOptimizedImageUrl(banner.imageUrl, { width: 200 })}
+                loading="lazy"
                 alt={banner.title}
                 className="h-16 w-24 rounded-lg object-cover"
               />
